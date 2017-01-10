@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-4">
+    <p class="norm-width thumbnail">Телефон больницы: <%= @hospital.phone %></p>
+  </div>
+</div>
+
+<div class="action">
+  <% if @hospital.user == current_user %>
+      <%= link_to 'Снести больницу', hospital_path(@hospital), method: :delete, data: {confirm: 'Действительно ли вы хотите снести больницу?'}, class: 'btn btn-danger' %>
+  <% end %>
+</div>

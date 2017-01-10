@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.buffer-bottom {
+  padding-bottom: 10px;
+}
+
+.buffer-top {
+  padding-top: 10px;
+}
+
+.norm-width {
+  word-wrap: break-word;
+}

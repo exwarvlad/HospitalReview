@@ -1,0 +1,9 @@
+<h3 class="buffer-bottom">Список больниц</h3>
+
+<div class="buffer-bottom">
+  <%= link_to 'Создать больницу', new_hospital_path, class: 'btn btn-primary' if user_signed_in? %>
+</div>
+
+<div class="row buffer-top">
+  <%= render partial: 'hospitals/hospital', collection: @hospitals %>
+</div>

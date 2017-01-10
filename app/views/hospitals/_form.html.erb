@@ -1,0 +1,10 @@
+<%= form_for(@hospital) do |f| %>
+    <div class="form-group">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+
+    <div class="action">
+      <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+    </div>
+<% end %>
