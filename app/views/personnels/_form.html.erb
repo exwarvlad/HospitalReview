@@ -1,0 +1,26 @@
+<%= form_for @personnel do |f| %>
+
+    <div class="form-group">
+      <%= f.label :surname %><br>
+      <%= f.text_field :surname %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :year_of_birth %><br>
+      <%= f.text_field :year_of_birth %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :position %><br>
+      <%= f.text_field :position %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+
+      <% if @personnel.persisted? %>
+          <%= link_to 'Удалить сотрудника', personnel_path(@personnel), method: :delete, data: {confirm: 'Действительно ли вы хотите удалить сотрудника?'}, class: 'btn btn-danger' %>
+      <% end %>
+      или <%= link_to 'вернуться', :back %>
+    </div>
+<% end %>

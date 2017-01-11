@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root "hospitals#index"
 
   resources :hospitals
+  resources :personnels
 end
