@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   resources :hospitals
   resources :personnels
-  resources :hospital_personnels
+  resources :hospital_personnels do
+    get 'add_personnel', on: :member
+  end
 end

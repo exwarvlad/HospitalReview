@@ -26,6 +26,8 @@ class HospitalsController < ApplicationController
   end
 
   def destroy
+    # чищу за собой концы, перед сносом больницы
+    @hospital.hospital_personnels.all.each {|personnel| personnel.destroy}
     @hospital.destroy
     redirect_to root_path, alert: '1'
   end
