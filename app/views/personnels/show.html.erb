@@ -1,3 +1,9 @@
+<% if current_user_can_edit?(@personnel) %>
+    <div class="buffer-top buffer-bottom">
+      <%= link_to 'Изменить', edit_personnel_path(@personnel), class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
 <div class="row">
   <div class="col-md-4">
     <div class="thumbnail">
@@ -8,8 +14,8 @@
   </div>
 </div>
 
-<% if current_user_can_edit?(@personnel) %>
-    <div class="buffer-top">
-      <%= link_to 'Изменить', edit_personnel_path(@personnel), class: 'btn btn-primary' %>
-    </div>
-<% end %>
+<h3>Спиисок рабочих мест</h3>
+
+<div class="row buffer-top">
+  <%= render partial: 'hospitals/hospital', collection: @hospitals_list_from_personnel %>
+</div>

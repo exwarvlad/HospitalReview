@@ -8,7 +8,8 @@ class PersonnelsController < ApplicationController
   end
 
   def show
-
+    # список больниц, в которых работает текущий юзер
+    @hospitals_list_from_personnel = get_hospitals_list
   end
 
   def new
@@ -53,6 +54,17 @@ class PersonnelsController < ApplicationController
 
   def personnel_params
     params.require(:personnel).permit(:surname, :year_of_birth, :position)
+  end
+
+  def get_hospitals_list
+    arra = []
+    # достаю id больниц в которых работает текущий юзер
+    hospitals_id = @personnel.hospital_personnels.all.map(&:hospital_id)
+
+    Hospital.all.each do |hosp|
+      arra << hosp if hospitals_id.include?(hosp.id)
+    end
+    arra
   end
 
 end
