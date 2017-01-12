@@ -1,8 +1,8 @@
-<div class="col-sm-6 col-md-3">
+<div class="col-sm-6 col-md-4">
   <div class="thumbnail">
     <div class="caption">
-      <%= link_to personnel.surname, personnel_path(personnel) %>
-      <p>Квалификация: <%= personnel.position %></p>
+      <%= link_to personnel.surname, personnel_path(personnel), class: 'norm-width' %>
+      <p class="norm-width">Квалификация: <%= personnel.position %></p>
     </div>
   </div>
 </div>

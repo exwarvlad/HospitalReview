@@ -38,6 +38,8 @@ class PersonnelsController < ApplicationController
   end
 
   def destroy
+    # перед удалением профиля сотрудника, удаляю его концы с других больниц
+    # clear_personnel_from_hospitals(@personnel)
     @personnel.destroy
     redirect_to personnels_path, notice: '1'
   end
@@ -65,6 +67,15 @@ class PersonnelsController < ApplicationController
       arra << hosp if hospitals_id.include?(hosp.id)
     end
     arra
+  end
+
+  def clear_personnel_from_hospitals(personnel)
+    hospitals_id = personnel.hospital_personnels.all.map(&:hospital_id)
+
+    hospitals_id.each do |hosp_id|
+      hospital = Hospital.all.find_by(id: hosp_id)
+      hospital.hospital_personnels.each {|person| person.destroy if person.personnel_id == personnel.id}
+    end
   end
 
 end

@@ -5,7 +5,7 @@
       <strong class="norm-width">Телефон больницы: <%= @hospital.phone %></strong>
       <div class="action buffer-top">
         <% if @hospital.user == current_user %>
-            <%= link_to 'Добавить сотрудника', new_hospital_personnel_path(id: @hospital.id), class: 'btn btn-warning'  %>
+            <%= link_to 'Добавить сотрудника', new_hospital_personnel_path(@hospital), class: 'btn btn-warning'  %>
             <%= link_to 'Снести больницу', hospital_path(@hospital), method: :delete, data: {confirm: 'Действительно ли вы хотите снести больницу?'}, class: 'btn btn-danger' %>
         <% end %>
       </div>
