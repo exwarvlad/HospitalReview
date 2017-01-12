@@ -1,11 +1,36 @@
-<div class="row">
-  <div class="col-md-4">
-    <p class="norm-width thumbnail">Телефон больницы: <%= @hospital.phone %></p>
-  </div>
-</div>
 
-<div class="action">
-  <% if @hospital.user == current_user %>
-      <%= link_to 'Снести больницу', hospital_path(@hospital), method: :delete, data: {confirm: 'Действительно ли вы хотите снести больницу?'}, class: 'btn btn-danger' %>
-  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 buffer-top">
+      <strong class="norm-width">Телефон больницы: <%= @hospital.phone %></strong>
+      <div class="action buffer-top">
+        <% if @hospital.user == current_user %>
+            <%= link_to 'Добавить сотрудника', '#', class: 'btn btn-primary'  %>
+            <%= link_to 'Снести больницу', hospital_path(@hospital), method: :delete, data: {confirm: 'Действительно ли вы хотите снести больницу?'}, class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Список сотрудников больницы</h3>
+      <table class="users-table table">
+        <thead>
+        <tr>
+          <th class="text-center">Номер</th>
+          <th class="text-center">Фамилия</th>
+          <th class="text-center">Год рождения</th>
+          <th class="text-center">Должность</th>
+        </tr>
+        </thead>
+        <% @hospital.hospital_personnels.each_with_index do |personnel, index| %>
+            <tr class="text-center">
+              <td><%= index + 1 %></td>
+              <td><%= link_to personnel.surname, edit_hospital_personnel_path(personnel) %></td>
+              <td><%= personnel.year_of_birth %></td>
+              <td><%= personnel.position %></td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

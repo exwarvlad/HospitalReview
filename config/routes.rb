@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :hospitals
   resources :personnels
+  resources :hospital_personnels
 end
