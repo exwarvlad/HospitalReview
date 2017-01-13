@@ -1,8 +1,5 @@
 class HospitalPersonnel < ApplicationRecord
+  belongs_to :hospital
 
-  # добовляет сотрудника
-  def add_personnel!
-
-  end
-
+  # validates :personnel_id, uniqueness: true
 end

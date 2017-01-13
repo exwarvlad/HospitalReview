@@ -39,7 +39,7 @@ class PersonnelsController < ApplicationController
 
   def destroy
     # перед удалением профиля сотрудника, удаляю его концы с других больниц
-    # clear_personnel_from_hospitals(@personnel)
+    clear_personnel_from_hospitals(@personnel)
     @personnel.destroy
     redirect_to personnels_path, notice: '1'
   end

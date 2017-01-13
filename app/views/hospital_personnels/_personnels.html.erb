@@ -1,0 +1,12 @@
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+    <div class="caption">
+      <span>Фамилия: </span> <%= link_to personnels.surname, personnel_path(personnels), class: 'norm-width' %>
+      <p class="norm-width">Квалификация: <%= personnels.position %></p>
+      <%= link_to 'Добавить', hospital_hospital_personnels_path(
+          @hospital, :personnel_id => personnels.id, :position => personnels.position,
+          :surname => personnels.surname, :year_of_birth => personnels.year_of_birth, id: @hospital.id
+      ), method: :post, class: 'btn btn-warning' %>
+    </div>
+  </div>
+</div>

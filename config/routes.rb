@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   root "hospitals#index"
 
-  resources :hospitals
-  resources :personnels
-  resources :hospital_personnels do
-    post 'add_personnel', on: :member
+  resources :hospitals do
+    resources :hospital_personnels
   end
+  resources :personnels
+  resources :hospital_personnels
+
 end
