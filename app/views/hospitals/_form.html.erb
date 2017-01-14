@@ -1,4 +1,7 @@
 <%= form_for(@hospital) do |f| %>
+
+    <%= render partial: 'partials/form_errors', locals: {model: @hospital} %>
+
     <div class="form-group">
       <%= f.label :phone %><br>
       <%= f.text_field :phone %>

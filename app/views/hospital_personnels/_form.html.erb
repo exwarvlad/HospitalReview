@@ -1,5 +1,7 @@
 <%= form_for @hospital_personnel do |f| %>
 
+    <%= render partial: 'partials/form_errors', locals: {model: @hospital_personnel} %>
+
     <div class="form-group">
       <%= f.label :surname %><br>
       <%= f.text_field :surname %>
