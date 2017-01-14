@@ -15,7 +15,7 @@
       <%= f.select :position, (select_helper_personnel_type(Personnel::POSITIONS)) %>
     </div>
 
-    <div class="actions">
+    <div class="actions buffer-bottom">
       <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
 
       <% if @personnel.persisted? %>

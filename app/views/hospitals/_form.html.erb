@@ -4,7 +4,8 @@
       <%= f.text_field :phone %>
     </div>
 
-    <div class="action">
+    <div class="action buffer-bottom">
       <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+      или <%= link_to 'вернуться', :back %>
     </div>
 <% end %>

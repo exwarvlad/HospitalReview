@@ -1,11 +1,10 @@
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 buffer-top">
       <strong class="norm-width">Телефон больницы: <%= @hospital.phone %></strong>
       <div class="action buffer-top">
         <% if @hospital.user == current_user %>
-            <%= link_to 'Добавить сотрудника', hospital_hospital_personnels_path(@hospital), class: 'btn btn-warning'  %>
+            <%= link_to 'Добавить сотрудника', hospital_hospital_personnels_path(@hospital), class: 'btn btn-warning' %>
             <%= link_to 'Снести больницу', hospital_path(@hospital), method: :delete, data: {confirm: 'Действительно ли вы хотите снести больницу?'}, class: 'btn btn-danger' %>
         <% end %>
       </div>
@@ -25,7 +24,11 @@
         <% @hospital.hospital_personnels.each_with_index do |personnel, index| %>
             <tr class="text-center">
               <td><%= index + 1 %></td>
-              <td><%= link_to personnel.surname, edit_hospital_personnel_path(personnel) %></td>
+              <% if current_user_can_edit?(@hospital) %>
+                  <td><%= link_to personnel.surname, edit_hospital_personnel_path(personnel) %></td>
+              <% else %>
+                  <td><%= personnel.surname %></td>
+              <% end %>
               <td><%= personnel.year_of_birth %></td>
               <td><%= personnel.position %></td>
             </tr>

@@ -1,0 +1,35 @@
+ru:
+  activerecord:
+    attributes:
+      hospital:
+        phone: 'Телефон'
+      personnel:
+        surname: 'Фамилия'
+        year_of_birth: 'Год рождения'
+        position: 'Квалификация'
+      hospital_personnel:
+        surname: 'Фамилия'
+        year_of_birth: 'Год рождения'
+        position: 'Квалификация'
+
+  controllers:
+    hospital_personnels:
+      alert_message: 'Вам туда низя'
+      hospital_person_present: 'Это сотрудник уже работает в этой больнице'
+      created: 'Сотрудник добавлен в Вашу больницу'
+      created_error: 'Не удалось добавить этого сотрудника'
+      updated: 'Сотрудник больницы обновлен'
+      updated_errors: 'Не удалось обновить сотрудника больницы'
+      destroyed: 'Сотрудник удален из Вашего списка больницы'
+    hospitals:
+      created: 'Больница успешно создана'
+      created_error: 'Не удалось создать Больницу'
+      destroyed: 'Больница уничтожена :('
+    personnels:
+      created: 'Сотрудник успешно создан'
+      created_arror: 'Не удалось удалить сотрудника'
+      updated: 'Сотрудник обновлен'
+      updated_error: 'Не удалось обновить сотрудника'
+      destroyed: 'Сотрудник удален'
+
+

@@ -15,9 +15,9 @@ class HospitalsController < ApplicationController
     @hospital = current_user.hospitals.build(hospital_params)
 
     if @hospital.save
-      redirect_to @hospital, notice: '1'
+      redirect_to @hospital, notice: I18n.t('controllers.hospitals.created')
     else
-      render :new
+      render :new, alert: I18n.t('controllers.hospitals.created_error')
     end
   end
 
@@ -29,7 +29,7 @@ class HospitalsController < ApplicationController
     # чищу за собой концы, перед сносом больницы
     @hospital.hospital_personnels.all.each {|personnel| personnel.destroy}
     @hospital.destroy
-    redirect_to root_path, alert: '1'
+    redirect_to root_path, alert: I18n.t('controllers.hospitals.destroyed')
   end
 
   private

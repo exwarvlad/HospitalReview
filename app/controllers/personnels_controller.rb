@@ -19,9 +19,9 @@ class PersonnelsController < ApplicationController
   def create
     @personnel = current_user.personnels.build(personnel_params)
     if @personnel.save
-      redirect_to @personnel, notice: '1'
+      redirect_to @personnel, notice: I18n.t('controllers.personnels.created')
     else
-      render :new
+      render :new, alert: I18n.t('controllers.personnels.created_arror')
     end
   end
 
@@ -31,9 +31,9 @@ class PersonnelsController < ApplicationController
 
   def update
     if @personnel.update(personnel_params)
-      redirect_to @personnel, notice: '1'
+      redirect_to @personnel, notice: I18n.t('controllers.personnels.updated')
     else
-      render :edit
+      render :edit, alert: ''
     end
   end
 
@@ -41,7 +41,7 @@ class PersonnelsController < ApplicationController
     # перед удалением профиля сотрудника, удаляю его концы с других больниц
     clear_personnel_from_hospitals(@personnel)
     @personnel.destroy
-    redirect_to personnels_path, notice: '1'
+    redirect_to personnels_path, notice: I18n.t('controllers.personnels.destroyed')
   end
 
   private

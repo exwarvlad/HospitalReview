@@ -4,7 +4,7 @@ class HospitalPersonnelsController < ApplicationController
   def index
     @hospital = Hospital.find(params[:hospital_id])
     # проверка может ли юзер просматривать список доступного персонала для добавления
-    redirect_to root_path, alert: 'Вам туда низя' unless can_user_add_personnel?(@hospital)
+    redirect_to root_path, alert: I18n.t('controllers.hospital_personnels.alert_message') unless can_user_add_personnel?(@hospital)
     # список персонала для добавления
     @new_personnels = get_personnels_list(@hospital)
   end
@@ -18,31 +18,31 @@ class HospitalPersonnelsController < ApplicationController
     @hospital = Hospital.find(params[:id])
     @personnel_id = params[:personnel_id].to_i
     # проверяет может ли текущий юзер добавить персонал для больницы
-    return redirect_to root_path, alert: 'Вам туда низя' unless can_user_add_personnel?(@hospital)
+    return redirect_to root_path, alert: I18n.t('controllers.hospital_personnels.alert_message') unless can_user_add_personnel?(@hospital)
     # проверка на уникальность
-    return redirect_to hospital_path(@hospital), alert: 'Это сотрудник уже работает в этой больнице' unless hospital_personnel_uniq?(@hospital, @personnel_id)
+    return redirect_to hospital_path(@hospital), alert: I18n.t('controllers.hospital_personnels.hospital_person_present') unless hospital_personnel_uniq?(@hospital, @personnel_id)
     @hospital.hospital_personnels.create(
         personnel_id: params[:personnel_id], surname: params[:surname],
         year_of_birth: params[:year_of_birth], position: params[:position]
     )
-    redirect_to hospital_path(@hospital), notice: "#{@hospital.id}"
+    redirect_to hospital_path(@hospital), notice: I18n.t('controllers.hospital_personnels.created')
   end
 
   def update
     # проверяю может ли текущий пользователь обновлять больницу
-    return redirect_to root_path, alert: 'Вам туда низя' unless can_user_add_personnel?(get_hospital)
+    return redirect_to root_path, alert: I18n.t('controllers.hospital_personnels.alert_message') unless can_user_add_personnel?(get_hospital)
     if @hospital_personnel.update(hospital_personnel_params)
-      redirect_to hospital_path(id: @hospital_personnel.hospital_id), notice: '1'
+      redirect_to hospital_path(id: @hospital_personnel.hospital_id), notice: I18n.t('controllers.hospital_personnels.updated')
     else
-      redirect_to hospital_path(@hospital), alert: "---"
+      redirect_to hospital_path(@hospital), alert: I18n.t('controllers.hospital_personnels.updated_errors')
     end
   end
 
   def destroy
     # проверяю может ли текущий юзер удалять сотрудника больницы
-    return redirect_to root_path, alert: 'Вам туда низя' unless can_user_add_personnel?(get_hospital)
+    return redirect_to root_path, alert: I18n.t('controllers.hospital_personnels.alert_message') unless can_user_add_personnel?(get_hospital)
     @hospital_personnel.destroy
-    redirect_to hospital_path(id: @hospital_personnel.hospital_id), notice: '1'
+    redirect_to hospital_path(id: @hospital_personnel.hospital_id), notice: I18n.t('controllers.hospital_personnels.destroyed')
   end
 
   private
@@ -56,12 +56,12 @@ class HospitalPersonnelsController < ApplicationController
   end
 
   def unless_user_can_edit?
-    return redirect_to root_path, alert: '0' unless user_signed_in?
+    return redirect_to root_path, alert: I18n.t('controllers.hospital_personnels.alert_message') unless user_signed_in?
     if user_signed_in?
       hospital = HospitalPersonnel.find(params[:id])
       hospital_id = hospital.hospital_id
       hospital_user = Hospital.find_by(id: hospital_id).user
-      redirect_to root_path, alert: '0' unless current_user == hospital_user
+      redirect_to root_path, alert: I18n.t('controllers.hospital_personnels.alert_message') unless current_user == hospital_user
     end
   end
 
