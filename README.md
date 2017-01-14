@@ -11,8 +11,8 @@
 **ruby** и **Ruby on Rails**
 
 Склонировать репозиторий ↓  
-`git clone https://github.com/exwarvlad/hospital.git`    
-или просто [скачать](https://github.com/exwarvlad/hospital/archive/master.zip)  
+`git clone https://github.com/exwarvlad/HospitalReview.git`    
+или просто [скачать](https://github.com/exwarvlad/HospitalReview/archive/master.zip)  
 
 Выполнить пару команд в консоли:  
 
