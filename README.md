@@ -1,24 +1,24 @@
-# README
+# Описание
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Приложение для учета персонала больниц.  
+Пользователи могут создавать свои больницы и персонал.  
+Добавлять сотрудников в свою больницу, делать разные  
+манипуляции с ними.
 
-Things you may want to cover:
+## Запуск
 
-* Ruby version
+Что бы развернуть свою копию, Вам нужен  
+**ruby** и **Ruby on Rails**
 
-* System dependencies
+Склонировать репозиторий ↓  
+`git clone https://github.com/exwarvlad/hospital.git`    
+или просто [скачать](https://github.com/exwarvlad/hospital/archive/master.zip)  
 
-* Configuration
+Выполнить пару команд в консоли:  
 
-* Database creation
+`bundle install --without production`  
+`bundle exec rake db:migrate`  
+`rails s`  
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*И готово :)*  
+*Рекомендуется делать это на unix системах*
