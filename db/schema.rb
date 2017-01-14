@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111032330) do
+ActiveRecord::Schema.define(version: 20170114025950) do
 
   create_table "hospital_personnels", force: :cascade do |t|
     t.string   "surname"
-    t.date     "year_of_birth"
+    t.integer  "year_of_birth"
     t.string   "position"
     t.integer  "personnel_id",  null: false
     t.integer  "hospital_id",   null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170111032330) do
 
   create_table "personnels", force: :cascade do |t|
     t.string   "surname"
-    t.date     "year_of_birth"
+    t.integer  "year_of_birth"
     t.string   "position"
     t.integer  "user_id"
     t.datetime "created_at",    null: false

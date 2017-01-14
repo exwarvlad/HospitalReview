@@ -33,7 +33,7 @@ class PersonnelsController < ApplicationController
     if @personnel.update(personnel_params)
       redirect_to @personnel, notice: '1'
     else
-      render :new
+      render :edit
     end
   end
 

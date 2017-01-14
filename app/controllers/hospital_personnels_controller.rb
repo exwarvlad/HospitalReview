@@ -5,6 +5,7 @@ class HospitalPersonnelsController < ApplicationController
     @hospital = Hospital.find(params[:hospital_id])
     # проверка может ли юзер просматривать список доступного персонала для добавления
     redirect_to root_path, alert: 'Вам туда низя' unless can_user_add_personnel?(@hospital)
+    # список персонала для добавления
     @new_personnels = get_personnels_list(@hospital)
   end
 
@@ -15,8 +16,11 @@ class HospitalPersonnelsController < ApplicationController
 
   def create
     @hospital = Hospital.find(params[:id])
+    @personnel_id = params[:personnel_id].to_i
     # проверяет может ли текущий юзер добавить персонал для больницы
     return redirect_to root_path, alert: 'Вам туда низя' unless can_user_add_personnel?(@hospital)
+    # проверка на уникальность
+    return redirect_to hospital_path(@hospital), alert: 'Это сотрудник уже работает в этой больнице' unless hospital_personnel_uniq?(@hospital, @personnel_id)
     @hospital.hospital_personnels.create(
         personnel_id: params[:personnel_id], surname: params[:surname],
         year_of_birth: params[:year_of_birth], position: params[:position]
@@ -30,7 +34,7 @@ class HospitalPersonnelsController < ApplicationController
     if @hospital_personnel.update(hospital_personnel_params)
       redirect_to hospital_path(id: @hospital_personnel.hospital_id), notice: '1'
     else
-      redirect_to hospital_path(@hospital), notice: "---"
+      redirect_to hospital_path(@hospital), alert: "---"
     end
   end
 
@@ -84,5 +88,11 @@ class HospitalPersonnelsController < ApplicationController
     hospital = HospitalPersonnel.find(params[:id])
     hospital_id = hospital.hospital_id
     @hospital = Hospital.find_by(id: hospital_id)
+  end
+
+  def hospital_personnel_uniq?(hospital, hospital_id)
+    hospital_personnels_id = hospital.hospital_personnels.all.map(&:personnel_id)
+    return false if hospital_personnels_id.include?(hospital_id)
+    true
   end
 end
